@@ -1,0 +1,7 @@
+from matplotlib import pyplot as plt
+%matplotlib inline
+
+for col in features:
+    data.boxplot(column=col, by=label, figsize=(6,6))
+    plt.title(col)
+plt.show()
