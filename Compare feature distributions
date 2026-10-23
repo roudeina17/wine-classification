@@ -1,11 +1,13 @@
-from matplotlib import pyplot as plt
-%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-features = data.columns[:-1]   # toutes les colonnes sauf la dernière
-label = 'WineVariety'          # ta colonne cible
+features = data.columns[:-1]
 
-for col in features:
-    data.boxplot(column=col, by=label, figsize=(6, 6))
-    plt.title(col)
-    plt.suptitle('')           # enlève le titre automatique de pandas
-    plt.show()                 # dans la boucle (indenté)
+fig, axes = plt.subplots(4, 4, figsize=(18, 14))
+for ax, col in zip(axes.flat, features):
+    sns.boxplot(x='WineVariety', y=col, data=data, ax=ax)
+    ax.set_title(col)
+for ax in axes.flat[len(features):]:
+    ax.axis('off')
+plt.tight_layout()
+plt.show()
