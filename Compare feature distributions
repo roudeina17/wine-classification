@@ -1,7 +1,11 @@
 from matplotlib import pyplot as plt
 %matplotlib inline
 
+features = data.columns[:-1]   # toutes les colonnes sauf la dernière
+label = 'WineVariety'          # ta colonne cible
+
 for col in features:
-    data.boxplot(column=col, by=label, figsize=(6,6))
+    data.boxplot(column=col, by=label, figsize=(6, 6))
     plt.title(col)
-plt.show()
+    plt.suptitle('')           # enlève le titre automatique de pandas
+    plt.show()                 # dans la boucle (indenté)
